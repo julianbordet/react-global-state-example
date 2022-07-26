@@ -3,7 +3,8 @@ const types = {
     authLogin: 'auth - login',
     authLogout: 'auth - logout',
     productDeleteAll: 'product - delete all',
-    productChange: 'product - change'
+    productChange: 'product - change',
+    addProduct: 'product - add'
 }
 
 const initialStore = {
@@ -15,6 +16,18 @@ const initialStore = {
 }
 
 const storeReducer = (state, action) =>{
+
+    const productToAdd = {id: 4, title: 'Product 4'}
+
+    let updatedItemList = state.products.concat(productToAdd);
+    /*console.log(updatedItemList);*/
+    /*
+    const addProductHandler = (state) =>{
+        state.products.push({id: 4, title: 'Product 4'})
+        console.log(state);
+        return state
+    }
+    */
 
     switch(action.type){
         case types.authLogout:
@@ -35,10 +48,24 @@ const storeReducer = (state, action) =>{
             }
         
         case types.productChange:
+            
             return{
+
                 ...state,
-                products: [{id: 3, title: 'Product #3'}]
+                products: [{id: 1, title: 'Updated Product #1'},
+                           {id: 2, title: 'Updated Product #2'}]
             }
+        
+        case types.addProduct:
+
+            let updatedProductList = state.products
+            let newProduct = {id: 3, title: 'Product #3'};
+            updatedProductList.push(newProduct);
+
+                return{
+                   ...state,
+                   products: updatedProductList
+                }
 
         default:
             return state;

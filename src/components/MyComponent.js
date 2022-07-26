@@ -24,6 +24,7 @@ const MyComponent = () =>{
 
             <h2>Products:</h2>
             <ul>
+                
                 {products.map(product => (
                     <li key={product.id}>{product.title}</li>
                 ))}
@@ -37,6 +38,11 @@ const MyComponent = () =>{
             <button onClick={() => dispatch({type: types.productChange})}>
                 Change
             </button>
+
+            <button onClick={() => dispatch({type: types.addProduct})}>
+                Add Product #4
+            </button>
+
         </div>
     )
 }
